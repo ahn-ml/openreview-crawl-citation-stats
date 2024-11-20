@@ -1,6 +1,7 @@
 import requests
 import openreview
 import pandas as pd
+from tqdm import tqdm
 
 
 conf_year = int(input("Put Conference Year: "))
@@ -23,7 +24,7 @@ params = {
 paper_titles = []
 citation_statistics = []
 
-for submission in submissions:
+for submission in tqdm(submissions):
     paper_title = submission.content["title"]["value"]
     paper_titles.append(paper_title)
     params["query"] = "intitle:"+paper_title
