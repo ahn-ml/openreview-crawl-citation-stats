@@ -12,10 +12,7 @@ client = openreview.Client(baseurl='https://api.openreview.net')
 # Single-blind venues
 
 # API V1 (Double Blind Submissions)
-submissions = openreview.tools.get_all_notes(
-    client,
-    invitation=f"{venue_id}-/Blind_Submission",
-)
+submissions = client.get_all_notes(invitation=f"{venue_id}-/Blind_Submission")
 
 api_key = ...
 url = "https://api.scrapingdog.com/google_scholar"
