@@ -42,4 +42,4 @@ stats = {'name': paper_titles, 'num_citation': citation_statistics}
 df = pd.DataFrame(stats)
 df = df.sort_values(by=['num_citation'], ascending=False)
 
-df.to_csv(f'ICLR-{conf_year}-citation_stats.csv')
+df.to_csv(f'ICML-{conf_year}-citation_stats.csv')
