@@ -4,21 +4,20 @@ import pandas as pd
 from tqdm import tqdm
 
 
-conf_name = input("put ICLR, ICML, or Neurips")
 conf_year = input("put Year")
 
-venue_id = f"{conf_name}/{conf_year}/Conference/"
+venue_id = f"ICLR.cc/{conf_year}/Conference/"
 
 client = openreview.Client(baseurl='https://api.openreview.net')
 # Single-blind venues
 
 # API V1 (Double Blind Submissions)
-submissions = openreview.tools.iterget_notes(
+submissions = openreview.tools.get_all_notes(
     client,
     invitation=f"{venue_id}-/Blind_Submission",
 )
 
-api_key = "673d8502cf6cadeb575bc2c9"
+api_key = ...
 url = "https://api.scrapingdog.com/google_scholar"
 
 params = {
@@ -54,5 +53,5 @@ stats = {'name': paper_titles, 'num_citation': citation_statistics}
 df = pd.DataFrame(stats)
 df = df.sort_values(by=['num_citation'], ascending=False)
 
-df.to_csv(f'{conf_name}-{conf_year}-citation_stats.csv')
+df.to_csv(f'ICLR-{conf_year}-citation_stats.csv')
 
