@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 
 
-conf_year = input("put Year")
+conf_year = input("Put Conference Year: ")
 
 venue_id = f"ICLR.cc/{conf_year}/Conference/"
 
@@ -37,12 +37,14 @@ for submission in tqdm(submissions):
         while(response.status_code != 200):
             response = requests.get(url, params=params)
         data = response.json()
-        if data['scholar_results'][0]['inline_links']['cited_by']['total'] == 'Related articles':
-            citation_statistics.append(0)
-        else:
-            _, _, val = data['scholar_results'][0]['inline_links']['cited_by']['total'].split(" ")
-            citation_statistics.append(int(val))
-
+        try:
+            if data['scholar_results'][0]['inline_links']['cited_by']['total'] == 'Related articles':
+                citation_statistics.append(0)
+            else:
+                _, _, val = data['scholar_results'][0]['inline_links']['cited_by']['total'].split(" ")
+                citation_statistics.append(int(val))
+        except:
+            citation_statistics.append(-1)
 
 
 stats = {'name': paper_titles, 'num_citation': citation_statistics}
