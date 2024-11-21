@@ -8,9 +8,11 @@ conf_year = input("Put Conference Year: ")
 
 venue_id = f"ICLR.cc/{conf_year}/Conference/"
 
-client = openreview.api.OpenReviewClient(baseurl='https://api2.openreview.net')
+client = openreview.Client(baseurl='https://api.openreview.net')
+# Single-blind venues
 
-submissions = client.get_all_notes(invitation=f"{venue_id}-/Submission")
+# API V1 (Double Blind Submissions)
+submissions = client.get_all_notes(invitation=f"{venue_id}-/Blind_Submission")
 
 api_key = ...
 url = "https://api.scrapingdog.com/google_scholar"
