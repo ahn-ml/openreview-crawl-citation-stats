@@ -28,7 +28,7 @@ for submission in tqdm(submissions):
     if "Submitted" in submission.content["venue"]:
         continue
     else:
-        paper_title = submission.content["title"]
+        paper_title = submission.content["title"]["value"]
         paper_titles.append(paper_title)
         params["query"] = "intitle:"+paper_title
         response = requests.get(url, params=params)
