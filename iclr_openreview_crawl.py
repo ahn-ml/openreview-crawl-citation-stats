@@ -25,7 +25,7 @@ citation_statistics = []
 
 
 for submission in tqdm(submissions):
-    if "Submitted" in submission.content["venue"]:
+    if ("Submitted" in submission.content["venue"]["value"]) or ("Withdrawn" in submission.content["venue"]["value"]):
         continue
     else:
         paper_title = submission.content["title"]["value"]
